@@ -11,22 +11,41 @@ pacman -S base-devel yay --noconfirm
 
 # Install packages
 yay --noconfirm -S \
-  chromium \
-  docker \
-  terminator \
-  community/libinput-gestures \
-  aur/visual-studio-code-bin \
-  kicad \
-  blender \
-  # freecad-appimage \
-  cura \
-  calibre \
-  gimp \
-  tmux \
-  xdotool \
-  wmctrl \
-  xclip \
-  iio-sensor-proxy
+    chrome-gnome-shell \
+    chromium \
+    docker \
+    terminator \
+    community/libinput-gestures \
+    aur/visual-studio-code-bin \
+    kicad \
+    blender \
+    # freecad-appimage \
+    cura \
+    calibre \
+    gimp \
+    tmux \
+    xdotool \
+    wmctrl \
+    xclip \
+    iio-sensor-proxy
+
+# Install Gnome Extensions -
+mkdir -p ~/.local/share/gnome-shell/extensions
+cd ~/.local/share/gnome-shell/extensions/
+# - Workspace Matrix
+wget https://github.com/mzur/gnome-shell-wsmatrix/releases/download/v4.0.0/wsmatrix@martin.zurowietz.de.zip
+unzip wsmatrix@martin.zurowietz.de.zip -d wsmatrix@martin.zurowietz.de
+rm wsmatrix@martin.zurowietz.de.zip
+# - Clipboard Indicator
+mkdir clipboard-indicator@tudmotu.com
+git clone https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git \
+clipboard-indicator@tudmotu.com
+# - Sound Input & Output Device Chooser
+mkdir sound-output-device-chooser@kgshank.net
+git clone https://github.com/kgshank/gse-sound-output-device-chooser.git
+cp -r gse-sound-output-device-chooser/sound-output-device-chooser@kgshank.net .
+rm -rf gse-sound-output-device-chooser
+cd $FOLDER
 
 # Set up aliases
 cp $FOLDER/aliases/.bash_aliases ~/
@@ -34,16 +53,12 @@ echo "if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi" >> ~/.bashrc
 
-# Set up Docker
-sudo systemctl enable docker.service
-groupadd docker
-sudo gpasswd -a $USER docker
-
 # Set up Terminator
 mkdir -p  ~/.config/terminator
 cp $FOLDER/terminator/* ~/.config/terminator/
 
 # Install autorotate
+mkdir ~/Programs
 cd ~/Programs
 git clone https://github.com/alvaroferran/AutoRotateScreen.git
 chmod +x AutoRotateScreen/AutoRotateScreen.py
@@ -72,13 +87,22 @@ code --install-extension marus25.cortex-debug
 code --install-extension akamud.vscode-theme-onedark
 code --install-extension yzhang.markdown-all-in-one
 
+# Set up Docker
+sudo systemctl enable docker.service
+groupadd docker
+sudo gpasswd -a $USER docker
+
 # Install conda
 cd ~/Programs
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
 chmod +x miniconda.sh
 ./miniconda.sh -b -p $HOME/Programs/Conda -f
 rm miniconda.sh
-echo "# >>> conda initialize >>>
+echo "# >>> conda initialize >>># Set up Docker
+sudo systemctl enable docker.service
+groupadd docker
+sudo gpasswd -a $USER docker
+
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('$HOME/Programs/Conda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
