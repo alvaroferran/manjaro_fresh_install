@@ -1,0 +1,10 @@
+{
+    "telemetry.enableTelemetry": false,
+    "editor.formatOnSave": true,
+    "editor.wordWrapColumn": 79,
+    "editor.minimap.enabled": false,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "python.linting.flake8Enabled": true,
+    "workbench.colorTheme": "Atom One Dark"
+}
