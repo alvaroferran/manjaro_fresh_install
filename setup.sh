@@ -11,8 +11,9 @@ pacman -S base-devel yay --noconfirm
 
 # Install packages
 yay --noconfirm -S \
+    avahi \
     chrome-gnome-shell \
-    chromium \
+    brave \
     docker \
     terminator \
     community/libinput-gestures \
@@ -86,9 +87,9 @@ code --install-extension ms-vscode-remote.vscode-remote-extensionpack
 code --install-extension marus25.cortex-debug
 code --install-extension akamud.vscode-theme-onedark
 code --install-extension yzhang.markdown-all-in-one
+code --install-extension cschlosser.doxdocgen
 
 # Set up Docker
-sudo systemctl enable docker.service
 groupadd docker
 sudo gpasswd -a $USER docker
 
@@ -118,6 +119,10 @@ unset __conda_setup
 # <<< conda initialize <<<
 " >>  ~/.bashrc
 cd
+
+# Set up services
+sudo systemctl enable avahi-daemon
+sudo systemctl enable docker.service
 
 # Reboot to set changes
 sudo reboot
