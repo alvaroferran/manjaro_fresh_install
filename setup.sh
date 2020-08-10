@@ -28,7 +28,9 @@ yay --noconfirm -S \
     xdotool \
     wmctrl \
     xclip \
-    iio-sensor-proxy
+    iio-sensor-proxy \
+    community/gnome-shell-extension-pop-shell \
+    community/pop-shell-shortcuts
 
 # Install Gnome Extensions -
 mkdir -p ~/.local/share/gnome-shell/extensions
@@ -57,6 +59,10 @@ fi" >> ~/.bashrc
 # Set up Terminator
 mkdir -p  ~/.config/terminator
 cp $FOLDER/terminator/* ~/.config/terminator/
+
+# Set up keybindings
+chmod +x pop_shell/keybindings.sh
+pop_shell/keybindings.sh
 
 # Install autorotate
 mkdir ~/Programs
