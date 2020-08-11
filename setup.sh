@@ -30,25 +30,16 @@ yay --noconfirm -S \
     xclip \
     iio-sensor-proxy \
     community/gnome-shell-extension-pop-shell \
-    community/pop-shell-shortcuts
+    community/pop-shell-shortcuts\
+    python-pip
 
-# Install Gnome Extensions -
-mkdir -p ~/.local/share/gnome-shell/extensions
-cd ~/.local/share/gnome-shell/extensions/
-# - Workspace Matrix
-wget https://github.com/mzur/gnome-shell-wsmatrix/releases/download/v4.0.0/wsmatrix@martin.zurowietz.de.zip
-unzip wsmatrix@martin.zurowietz.de.zip -d wsmatrix@martin.zurowietz.de
-rm wsmatrix@martin.zurowietz.de.zip
-# - Clipboard Indicator
-mkdir clipboard-indicator@tudmotu.com
-git clone https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git \
-clipboard-indicator@tudmotu.com
-# - Sound Input & Output Device Chooser
-mkdir sound-output-device-chooser@kgshank.net
-git clone https://github.com/kgshank/gse-sound-output-device-chooser.git
-cp -r gse-sound-output-device-chooser/sound-output-device-chooser@kgshank.net .
-rm -rf gse-sound-output-device-chooser
-cd $FOLDER
+# Install Gnome Extensions
+pip3 install --user gnome-extensions-cli
+gnome-extensions-cli install clipboard-indicator@tudmotu.com
+gnome-extensions-cli install fq@megh
+gnome-extensions-cli install gsconnect@andyholmes.github.io
+gnome-extensions-cli install sound-output-device-chooser@kgshank.net
+gnome-extensions-cli install wsmatrix@martin.zurowietz.de
 
 # Set up aliases
 cp $FOLDER/aliases/.bash_aliases ~/
@@ -94,6 +85,8 @@ code --install-extension marus25.cortex-debug
 code --install-extension akamud.vscode-theme-onedark
 code --install-extension yzhang.markdown-all-in-one
 code --install-extension cschlosser.doxdocgen
+code --install-extension coenraads.bracket-pair-colorizer-2
+code --install-extension aaron-bond.better-comments
 
 # Set up Docker
 groupadd docker
