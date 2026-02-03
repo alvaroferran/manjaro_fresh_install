@@ -22,3 +22,10 @@ gsettings set org.gnome.desktop.wm.keybindings maximize []
 gsettings set org.gnome.desktop.wm.keybindings unmaximize []
 gsettings set org.gnome.mutter.keybindings toggle-tiled-left []
 gsettings set org.gnome.mutter.keybindings toggle-tiled-right []
+gsettings set org.gnome.desktop.wm.keybindings move-to-side-e []
+gsettings set org.gnome.desktop.wm.keybindings move-to-side-w []
+gsettings set org.gnome.desktop.wm.keybindings move-to-side-n []
+gsettings set org.gnome.desktop.wm.keybindings move-to-side-s []
+
+# Disable interfering "Ubuntu Tiling Assistant" extension
+gnome-extensions disable tiling-assistant@ubuntu.com
